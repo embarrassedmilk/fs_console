@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Result.fs" />
+    <Compile Include="Customers.fs" />
+    <Compile Include="Validation.fs" />
+    <Compile Include="MonoidalChar.fs" />
+    <Compile Include="Monoids.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+</Project>
