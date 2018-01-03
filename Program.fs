@@ -48,14 +48,14 @@ let main argv =
     let badEmail = "screech.com"
 
     //applicative
-    let goodCustomerA = createCustomerResultA goodId goodEmail
+    let goodCustomerA = createCustomerResultA goodId 666 goodEmail
     match goodCustomerA with
         | Success info -> 
-            printfn "yaaay"
+            printfn "No problems A"
         | Failure errs ->
             errs |> Seq.iter (printf "%s ,")
 
-    let badCustomerA = createCustomerResultA badId badEmail
+    let badCustomerA = createCustomerResultA badId 11 badEmail
     match badCustomerA with
         | Success info -> 
             printfn "baaad"
@@ -66,7 +66,7 @@ let main argv =
     let goodCustomerM = createCustomerResultM goodId goodEmail
     match goodCustomerM with
         | Success info -> 
-            printfn "yaaay m"
+            printfn "No problems M"
         | Failure errs ->
             errs |> Seq.iter (printf "%s ,")
 
