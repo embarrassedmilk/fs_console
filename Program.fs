@@ -7,7 +7,8 @@ open System
 // open Fsconsole.Result
 // open Fsconsole.Customers
 // open Fsconsole.OptionList
-open Fsconsole.ResultList
+// open Fsconsole.ResultList
+open Fsconsole.Downloader
 
 [<EntryPoint>]
 let main argv =
@@ -79,9 +80,15 @@ let main argv =
     //     | Failure errs ->
     //         errs |> Seq.iter (printfn "%s ")
 
-    let good = ["1"; "2"; "3"] |> mapResult parseInt
-    printfn "%A" good
+    // let good = ["1"; "2"; "3"] |> mapResult parseInt
+    // printfn "%A" good
 
-    let bad = ["1";"t";"u"] |> mapResult parseInt
-    printfn "%A" bad
+    // let bad = ["1";"t";"u"] |> mapResult parseInt
+    // printfn "%A" bad
+
+    System.Uri ("http://google.com")
+    |> getUriContent
+    |> Async.RunSynchronously
+    |> showContentResult
+
     0 // return an integer exit code
