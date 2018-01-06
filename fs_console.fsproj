@@ -7,6 +7,9 @@
 
   <ItemGroup>
     <Compile Include="Result.fs" />
+    <Compile Include="Option.fs" />
+    <Compile Include="OptionList.fs" />
+    <Compile Include="ResultList.fs" />
     <Compile Include="Customers.fs" />
     <Compile Include="Validation.fs" />
     <Compile Include="MonoidalChar.fs" />

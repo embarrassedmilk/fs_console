@@ -44,11 +44,7 @@ module Customers =
         let strangeIdResult = createCustomerStrangeId strangeId
         let emailResult = createEmailAddress email
         
-        let testMap1 = createCustomer <!> idResult
-        let testMap2 = Result.map createCustomer idResult
-
-        Result.apply (Result.apply (Result.map createCustomer idResult) strangeIdResult) emailResult
-        //createCustomer <!> idResult <*> strangeIdResult <*> emailResult
+        createCustomer <!> idResult <*> strangeIdResult <*> emailResult
 
     let (>>=) x f = Result.bind f x
 

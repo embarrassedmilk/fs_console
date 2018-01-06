@@ -4,8 +4,10 @@ open System
 // open Fsconsole.OrdersUsingImperativeLoop
 // open Fsconsole.MonoidalChar
 // open Fsconsole.MonodialValidation
-open Fsconsole.Result
-open Fsconsole.Customers
+// open Fsconsole.Result
+// open Fsconsole.Customers
+// open Fsconsole.OptionList
+open Fsconsole.ResultList
 
 [<EntryPoint>]
 let main argv =
@@ -42,39 +44,44 @@ let main argv =
     //     |> List.reduce add
     //     |> printfn "Result is %A"
 
-    let goodId = 1
-    let badId = 0
-    let goodEmail = "test@test.com"
-    let badEmail = "screech.com"
+    // let goodId = 1
+    // let badId = 0
+    // let goodEmail = "test@test.com"
+    // let badEmail = "screech.com"
 
-    //applicative
-    let goodCustomerA = createCustomerResultA goodId 666 goodEmail
-    match goodCustomerA with
-        | Success info -> 
-            printfn "No problems A"
-        | Failure errs ->
-            errs |> Seq.iter (printf "%s ,")
+    // //applicative
+    // let goodCustomerA = createCustomerResultA goodId 666 goodEmail
+    // match goodCustomerA with
+    //     | Success info -> 
+    //         printfn "No problems A"
+    //     | Failure errs ->
+    //         errs |> Seq.iter (printf "%s ,")
 
-    let badCustomerA = createCustomerResultA badId 11 badEmail
-    match badCustomerA with
-        | Success info -> 
-            printfn "baaad"
-        | Failure errs ->
-            errs |> Seq.iter (printfn "%s ")
+    // let badCustomerA = createCustomerResultA badId 11 badEmail
+    // match badCustomerA with
+    //     | Success info -> 
+    //         printfn "baaad"
+    //     | Failure errs ->
+    //         errs |> Seq.iter (printfn "%s ")
 
-    //monadic
-    let goodCustomerM = createCustomerResultM goodId goodEmail
-    match goodCustomerM with
-        | Success info -> 
-            printfn "No problems M"
-        | Failure errs ->
-            errs |> Seq.iter (printf "%s ,")
+    // //monadic
+    // let goodCustomerM = createCustomerResultM goodId goodEmail
+    // match goodCustomerM with
+    //     | Success info -> 
+    //         printfn "No problems M"
+    //     | Failure errs ->
+    //         errs |> Seq.iter (printf "%s ,")
 
-    let badCustomerM = createCustomerResultM badId badEmail
-    match badCustomerM with
-        | Success info -> 
-            printfn "baaad m"
-        | Failure errs ->
-            errs |> Seq.iter (printfn "%s ")
-        
+    // let badCustomerM = createCustomerResultM badId badEmail
+    // match badCustomerM with
+    //     | Success info -> 
+    //         printfn "baaad m"
+    //     | Failure errs ->
+    //         errs |> Seq.iter (printfn "%s ")
+
+    let good = ["1"; "2"; "3"] |> mapResult parseInt
+    printfn "%A" good
+
+    let bad = ["1";"t";"u"] |> mapResult parseInt
+    printfn "%A" bad
     0 // return an integer exit code
