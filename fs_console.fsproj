@@ -6,15 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Result.fs" />
-    <Compile Include="Option.fs" />
-    <Compile Include="TraverseList.fs" />
-    <Compile Include="OptionList.fs" />
-    <Compile Include="ResultList.fs" />
-    <Compile Include="Customers.fs" />
-    <Compile Include="Validation.fs" />
-    <Compile Include="MonoidalChar.fs" />
-    <Compile Include="Monoids.fs" />
+    <Compile Include="src/Result.fs" />
+    <Compile Include="src/Option.fs" />
+    <Compile Include="src/TraverseList.fs" />
+    <Compile Include="src/OptionList.fs" />
+    <Compile Include="src/ResultList.fs" />
+    <Compile Include="src/examples/Customers.fs" />
+    <Compile Include="src/examples/Validation.fs" />
+    <Compile Include="src/MonoidalChar.fs" />
+    <Compile Include="src/examples/Monoids.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
