@@ -8,6 +8,7 @@
   <ItemGroup>
     <Compile Include="Result.fs" />
     <Compile Include="Option.fs" />
+    <Compile Include="TraverseList.fs" />
     <Compile Include="OptionList.fs" />
     <Compile Include="ResultList.fs" />
     <Compile Include="Customers.fs" />
