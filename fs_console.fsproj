@@ -8,9 +8,9 @@
   <ItemGroup>
     <Compile Include="src/Async.fs" />
     <Compile Include="src/Result.fs" />
+    <Compile Include="src/AsyncResult.fs" />
     <Compile Include="src/Option.fs" />
-    <Compile Include="src/TraverseListResult.fs" />
-    <Compile Include="src/TraverseListAsync.fs" />
+    <Compile Include="src/List.fs" />
     <Compile Include="src/OptionList.fs" />
     <Compile Include="src/ResultList.fs" />
     <Compile Include="src/examples/Downloader.fs" />

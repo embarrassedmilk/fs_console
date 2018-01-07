@@ -100,7 +100,7 @@ let main argv =
         "http://veryverybad.example.com"
     ]
 
-    doTheStuff goodSites
+    doTheStuffM goodSites
         |> Async.RunSynchronously 
         |> showContentSizeResult 
 

@@ -1,8 +1,6 @@
 namespace Fsconsole
 open Result
 open Async
-open TraverseListAsync
-open TraverseListResult
 open System
 open System.Net
 
@@ -56,11 +54,16 @@ module Downloader =
 
         list |> List.maxBy contentSize
 
-    let doTheStuff list =
+    let doTheStuffA list =
         (List.map (System.Uri >> getUriContentSize) list)
-        |> TraverseListAsync.sequenceAsyncA
-        |> Async.map sequenceResultA
+        |> List.sequenceAsyncA
+        |> Async.map List.sequenceResultA
         |> Async.map (Result.map maxContentSize)
+
+    let doTheStuffM list = 
+        (List.map (System.Uri >> getUriContentSize) list)
+        |> List.sequenceAsyncResultM
+        |> AsyncResult.map maxContentSize
 
     let showContentSizeResult result =
         match result with
