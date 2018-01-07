@@ -1,5 +1,8 @@
 namespace Fsconsole
 open Result
+open Async
+open TraverseListAsync
+open TraverseListResult
 open System
 open System.Net
 
@@ -37,9 +40,31 @@ module Downloader =
                 return Result.Failure [err ]
             }
 
-    let showContentResult result = 
+    let makeContentSize (UriContent(uri, html)) = 
+        if System.String.IsNullOrEmpty(html) then
+            Result.Failure ["empty page"]
+        else
+            let uriContentSize = UriContentSize (uri, html.Length)
+            Result.Success uriContentSize 
+    
+    let getUriContentSize uri =
+        getUriContent uri
+        |> Async.map (Result.bind makeContentSize)
+
+    let maxContentSize list = 
+        let contentSize (UriContentSize (_, len)) = len
+
+        list |> List.maxBy contentSize
+
+    let doTheStuff list =
+        (List.map (System.Uri >> getUriContentSize) list)
+        |> TraverseListAsync.sequenceAsyncA
+        |> Async.map sequenceResultA
+        |> Async.map (Result.map maxContentSize)
+
+    let showContentSizeResult result =
         match result with
-            | Success (UriContent (uri, html)) ->
-                printfn "SUCCESS: [%s] First 100 chars: %s" uri.Host (html.Substring(0,100))
-            | Failure errs ->
-                printfn "FAILURE: %A" errs
+        | Success (UriContentSize (uri, len)) -> 
+            printfn "SUCCESS: [%s] Content size is %i" uri.Host len 
+        | Failure errs -> 
+            printfn "FAILURE: %A" errs

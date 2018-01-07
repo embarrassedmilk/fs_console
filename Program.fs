@@ -86,9 +86,22 @@ let main argv =
     // let bad = ["1";"t";"u"] |> mapResult parseInt
     // printfn "%A" bad
 
-    System.Uri ("http://google.com")
-    |> getUriContent
-    |> Async.RunSynchronously
-    |> showContentResult
+    let goodSites = [
+        "http://google.com"
+        "http://bbc.co.uk"
+        "http://fsharp.org"
+        "http://fsharpforfunandprofit.com"
+    ]
+
+    let badSites = [
+        "http://example.com/nopage"
+        "http://bad.example.com"
+        "http://verybad.example.com"
+        "http://veryverybad.example.com"
+    ]
+
+    doTheStuff goodSites
+        |> Async.RunSynchronously 
+        |> showContentSizeResult 
 
     0 // return an integer exit code

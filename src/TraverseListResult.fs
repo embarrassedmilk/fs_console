@@ -1,8 +1,8 @@
 namespace Fsconsole
 open Result
 
-module TraverseList =
-    let rec traverseResultA f list = 
+module TraverseListResult =
+    let traverseResultA f list = 
         let (<*>) = Result.apply
         let retn = Result.Success
         
@@ -14,6 +14,8 @@ module TraverseList =
             retn cons <*> (f head) <*> tail
 
         List.foldBack folder list initState
+
+    let sequenceResultA x = traverseResultA id x
 
     let rec traverseResultM f list =
         let (>>=) x f = Result.bind f x
