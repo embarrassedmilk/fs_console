@@ -1,6 +1,9 @@
 namespace Fsconsole
+
 open Result
 open System.Xml
+open ApiAction
+open Result
 
 module List =
     let traverseResultA f list = 
@@ -12,26 +15,11 @@ module List =
         let initState = retn []
         
         let folder head tail = 
-            retn cons <*> (f head) <*> tail
+            (retn cons) <*> (f head) <*> tail
 
         List.foldBack folder list initState
 
     let sequenceResultA x = traverseResultA id x
-
-    let traverseResultM f list =
-        let (>>=) x f = Result.bind f x
-        let retn = Result.Success
-
-        let cons head tail = head :: tail
-
-        let initState = retn []
-
-        let folder head tail = 
-            f head >>= (fun h ->
-            tail >>= (fun t -> 
-            retn (cons h t)))
-
-        List.foldBack folder list initState
 
     let traverseAsyncA f list = 
         let (<*>) = Async.apply
@@ -64,3 +52,15 @@ module List =
         List.foldBack folder list initialState
 
     let sequenceAsyncResultM x = traverseAsyncResultM id x
+
+    let traverse f list =
+        let (<*>) = ApiActionResult.apply
+        let retn = ApiActionResult.retn
+
+        let cons head tail = head :: tail
+
+        let initState = retn []
+        let folder head tail = 
+            retn cons <*> f head <*> tail
+
+        List.foldBack folder list initState     

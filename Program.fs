@@ -8,7 +8,9 @@ open System
 // open Fsconsole.Customers
 // open Fsconsole.OptionList
 // open Fsconsole.ResultList
-open Fsconsole.Downloader
+// open Fsconsole.Downloader
+open Fsconsole.ApiAction
+open Fsconsole.ReaderExample
 
 [<EntryPoint>]
 let main argv =
@@ -86,22 +88,26 @@ let main argv =
     // let bad = ["1";"t";"u"] |> mapResult parseInt
     // printfn "%A" bad
 
-    let goodSites = [
-        "http://google.com"
-        "http://bbc.co.uk"
-        "http://fsharp.org"
-        "http://fsharpforfunandprofit.com"
-    ]
+    // let goodSites = [
+    //     "http://google.com"
+    //     "http://bbc.co.uk"
+    //     "http://fsharp.org"
+    //     "http://fsharpforfunandprofit.com"
+    // ]
 
-    let badSites = [
-        "http://example.com/nopage"
-        "http://bad.example.com"
-        "http://verybad.example.com"
-        "http://veryverybad.example.com"
-    ]
+    // let badSites = [
+    //     "http://example.com/nopage"
+    //     "http://bad.example.com"
+    //     "http://verybad.example.com"
+    //     "http://veryverybad.example.com"
+    // ]
 
-    doTheStuffM goodSites
-        |> Async.RunSynchronously 
-        |> showContentSizeResult 
-
+    // doTheStuffM badSites
+    //     |> Async.RunSynchronously 
+    //     |> showContentSizeResult 
+    CustId "C1"
+    |> getPurchaseInfo
+    |> execute
+    |> showResult
+    
     0 // return an integer exit code
