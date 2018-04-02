@@ -27,3 +27,13 @@ module ApiActionResult =
                 (Failure errs)
 
         ApiAction newAction
+    
+    let either onSuccess onFailure xActionResult = 
+        let newAction api =
+            let xResult = ApiAction.run api xActionResult 
+            let yAction = 
+                match xResult with
+                | Result.Success x -> onSuccess x 
+                | Result.Failure err -> onFailure err
+            ApiAction.run api yAction  
+        ApiAction newAction

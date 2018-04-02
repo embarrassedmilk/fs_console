@@ -20,6 +20,8 @@
     <Compile Include="src/examples/Customers.fs" />
     <Compile Include="src/examples/Validation.fs" />
     <Compile Include="src/examples/ReaderExample.fs" />
+    <Compile Include="src/categoryTheory/e1.1.fs" />
+    <Compile Include="src/categoryTheory/writer.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
