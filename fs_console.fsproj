@@ -22,6 +22,7 @@
     <Compile Include="src/examples/ReaderExample.fs" />
     <Compile Include="src/categoryTheory/e1.1.fs" />
     <Compile Include="src/categoryTheory/writer.fs" />
+    <Compile Include="src/categoryTheory/Either.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
